@@ -1,0 +1,2 @@
+The code below create a a Rounded Shape that can be replace by a button
+"<div style='width:"& Self.Width -40 & "px;height:"& Self.Height -40 & "px;box-shadow:  lightgrey;background-color: white;border-radius:10px;'></div>"
