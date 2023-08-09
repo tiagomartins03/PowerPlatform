@@ -1,4 +1,0 @@
-#O código acima checa se o usuário tem foto no perfil. Caso não a tenha, o sistema colocará um foto padrão como default.
-
-//UsuáriosdoOffice365.UserPhoto(User().Email)
-If(UsuáriosdoOffice365.UserPhotoMetadata(Trim(User().Email)).HasPhoto,UsuáriosdoOffice365.UserPhotoV2(Trim(User().Email)),SampleImage)
