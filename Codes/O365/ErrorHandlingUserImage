@@ -1,0 +1,2 @@
+//UsuáriosdoOffice365.UserPhoto(User().Email)
+If(UsuáriosdoOffice365.UserPhotoMetadata(Trim(User().Email)).HasPhoto,UsuáriosdoOffice365.UserPhotoV2(Trim(User().Email)),SampleImage)
