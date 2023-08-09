@@ -1,1 +1,3 @@
-
+#O código acima faz a checagem dos dados para verificar se o usuário tem foto de perfil. Caso não a tenha, uma foto padrão é mostrada. 
+//UsuáriosdoOffice365.UserPhoto(User().Email)
+If(UsuáriosdoOffice365.UserPhotoMetadata(Trim(User().Email)).HasPhoto,UsuáriosdoOffice365.UserPhotoV2(Trim(User().Email)),SampleImage)
