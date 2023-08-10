@@ -1,0 +1,3 @@
+Concatenate(UsuáriosdoOffice365.UserProfile(User().Email).MailNickname," 
+",UsuáriosdoOffice365.UserProfile(User().Email).GivenName
+)
