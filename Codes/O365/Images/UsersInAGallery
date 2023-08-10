@@ -1,0 +1,6 @@
+//This code check if a bunch of user in a gallery has photo. If not, a default image is displayed instead of keep in blank.
+If(
+    UsuáriosdoOffice365.UserPhotoMetadata(ThisItem.Mail).HasPhoto,
+    UsuáriosdoOffice365.UserPhotoV2(ThisItem.Mail),
+    SampleImage
+)
