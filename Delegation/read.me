@@ -1,1 +1,36 @@
-
+ClearCollect(
+    colfinal,
+    Sort(
+        TrainingToDos,
+        KEY_ID,
+        SortOrder.Ascending
+    )
+);
+ForAll(
+    Sequence(
+        RoundUp(
+            First(
+                Sort(
+                    TrainingToDos,
+                    KEY_ID,
+                    SortOrder.Descending
+                )
+            ).KEY_ID / 2000,
+            0
+        )
+    ),
+    With(
+        {UltimoID: Last(colfinal).KEY_ID},
+        Collect(
+            colfinal,
+            Filter(
+                Sort(
+                    TrainingToDos,
+                    KEY_ID,
+                    SortOrder.Ascending
+                ),
+                KEY_ID > UltimoID
+            )
+        )
+    )
+)
