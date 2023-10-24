@@ -1,0 +1,19 @@
+Set(
+    hidenavbar,
+    Param("hidenavbar")
+);
+With(
+    {AppLink: "AppPublishedLink"},
+    If(
+        hidenavbar = "false" Or IsBlank(hidenavbar),
+        Launch(
+            AppLink,
+            {hidenavbar: true},
+            LaunchTarget.Replace
+        )
+    )
+)
+
+ 
+
+Aquela fórmula para ocultar o header automático
