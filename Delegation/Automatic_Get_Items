@@ -1,8 +1,8 @@
 ClearCollect(
-    colfinal,
+    colAutomatic,
     Sort(
-        TrainingToDos,
-        KEY_ID,
+        NetflixMovies,
+        ID,
         SortOrder.Ascending
     )
 );
@@ -11,25 +11,25 @@ ForAll(
         RoundUp(
             First(
                 Sort(
-                    TrainingToDos,
-                    KEY_ID,
+                    NetflixMovies,
+                    ID,
                     SortOrder.Descending
                 )
-            ).KEY_ID / 2000,
+            ).ID / 2000,
             0
         )
     ),
     With(
-        {UltimoID: Last(colfinal).KEY_ID},
+        {UltimoID: Last(colAutomatic).ID},
         Collect(
-            colfinal,
+            colAutomatic,
             Filter(
                 Sort(
-                    TrainingToDos,
-                    KEY_ID,
+                    NetflixMovies,
+                    ID,
                     SortOrder.Ascending
                 ),
-                KEY_ID > UltimoID
+               ID > UltimoID
             )
         )
     )
