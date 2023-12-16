@@ -1,14 +1,15 @@
-//Initialize a collection
+//Initialize a collection.
 ClearCollect(
     colAutomatic,
-    //Sort ascending all records from Database using ID Column
+//Sort all records in ascending order from the database using the ID column.
     Sort(
         NETFLIXDATA,
         ID,
         SortOrder.Ascending
     )
 );
-//Count how many times the loop will be used for get all records from database
+//Count how many times the loop will be run to get all the records from the database. 
+//For exemple: The database has 10,000 records. Using 2000 as datarows limit from Power Apps, the loop will be executed five times.
 ForAll(
     Sequence(
         RoundUp(
@@ -22,7 +23,9 @@ ForAll(
             0
         )
     ),
-//Feeding collection with all data from main datasource
+//On each iteration of the loop, it will feed the collection with 2000 items. 
+//If your database has 10001 records, the loop will run six times. In five executions, the collection will receive 2000 records. 
+//At the end of the sixth iteration, one item will be added to the collection resulting at 10001 records.
     With(
         {LastID: Last(colAutomatic).ID},
         Collect(
