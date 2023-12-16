@@ -36,7 +36,7 @@ ForAll(
                     ID,
                     SortOrder.Ascending
                 ),
-                ID > UltimoID
+                ID > LastID
             )
         )
     )
