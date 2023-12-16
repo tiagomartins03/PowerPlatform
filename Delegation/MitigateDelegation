@@ -1,17 +1,20 @@
+//Initialize a collection
 ClearCollect(
     colAutomatic,
+    //Sort ascending all records from Database using ID Column
     Sort(
-        NetflixMovies,
+        NETFLIXDATA,
         ID,
         SortOrder.Ascending
     )
 );
+//Count how many times the loop will be used for get all records from database
 ForAll(
     Sequence(
         RoundUp(
             First(
                 Sort(
-                    NetflixMovies,
+                    NETFLIXDATA,
                     ID,
                     SortOrder.Descending
                 )
@@ -19,17 +22,18 @@ ForAll(
             0
         )
     ),
+//Feeding collection with all data from main datasource
     With(
-        {UltimoID: Last(colAutomatic).ID},
+        {LastID: Last(colAutomatic).ID},
         Collect(
             colAutomatic,
             Filter(
                 Sort(
-                    NetflixMovies,
+                    NETFLIXDATA,
                     ID,
                     SortOrder.Ascending
                 ),
-               ID > UltimoID
+                ID > UltimoID
             )
         )
     )
