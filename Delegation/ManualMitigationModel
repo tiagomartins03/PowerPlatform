@@ -1,6 +1,6 @@
-ClearCollect(colmanual,Filter(NETFLIXDATA,ID>=1&&ID<=2000));
-Collect(colmanual,Filter(NETFLIXDATA,ID>=2001&&ID<=4000));
-Collect(colmanual,Filter(NETFLIXDATA,ID>=4001&&ID<=6000));
-Collect(colmanual,Filter(NETFLIXDATA,ID>=6001&&ID<=8000));
-Collect(colmanual,Filter(NETFLIXDATA,ID>=8001&&ID<=10000));
-Collect(colmanual,Filter(NETFLIXDATA,ID>=10001&&ID<=12000))
+ClearCollect(colmanual,Filter([YourDatasource],ID>=1&&ID<=2000));
+Collect(colmanual,Filter([YourDatasource],ID>=2001&&ID<=4000));
+Collect(colmanual,Filter([YourDatasource],ID>=4001&&ID<=6000));
+Collect(colmanual,Filter([YourDatasource],ID>=6001&&ID<=8000));
+Collect(colmanual,Filter([YourDatasource],ID>=8001&&ID<=10000));
+Collect(colmanual,Filter([YourDatasource],ID>=10001&&ID<=12000))
