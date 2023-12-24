@@ -1,0 +1,54 @@
+Set(AmountData, CountRows(NETFLIXDATA));
+Set(MaxIteration, RoundUp(AmountData / 2000, 0));
+ClearCollect(
+    colAutomatic,
+    Sort(
+        NETFLIXDATA,
+        ID,
+        SortOrder.Ascending
+    )
+);
+ClearCollect(
+    colIterations,
+    {
+        Iteration: 1,
+        Records: CountRows(colAutomatic),
+        UltimoID: Last(colAutomatic).ID // Adiciona a última ID da primeira iteração
+    }
+);
+ForAll(
+    Sequence(
+        RoundUp(
+            First(
+                Sort(
+                    NETFLIXDATA,
+                    ID,
+                    SortOrder.Descending
+                )
+            ).ID / 2000,
+            0
+        ) - 1 // Subtrai 1 para evitar a iteração extra
+    ),
+    With(
+        {UltimoID: Last(colAutomatic).ID},
+        Collect(
+            colAutomatic,
+            Filter(
+                Sort(
+                    NETFLIXDATA,
+                    ID,
+                    SortOrder.Ascending
+                ),
+                ID > UltimoID
+            )
+        );
+        Collect(
+            colIterations,
+            {
+                Iteration: Value(Last(colIterations).Iteration) + 1,
+                Records: CountRows(Filter(colAutomatic, ID > UltimoID)),
+                UltimoID: Last(colAutomatic).ID // Adiciona a última ID da iteração atual
+            }
+        )
+    )
+)
