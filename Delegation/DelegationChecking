@@ -1,3 +1,5 @@
+Set(AmountData,CountRows(NETFLIXDATA));
+Set(MaxIteration,RoundUp(AmountData/2000,0));
 ClearCollect(
     colAutomatic,
     Sort(
@@ -10,7 +12,8 @@ ClearCollect(
     colIterations,
     {
         Iteration: 1,
-        Records: CountRows(colAutomatic)
+        Records: CountRows(colAutomatic),
+        UltimoID: Last(colAutomatic).ID // Adiciona a última ID da primeira iteração
     }
 );
 ForAll(
@@ -43,7 +46,8 @@ ForAll(
             colIterations,
             {
                 Iteration: Value(Last(colIterations).Iteration) + 1,
-                Records: CountRows(colAutomatic)
+                Records: CountRows(colAutomatic),
+                UltimoID: Last(colAutomatic).ID // Adiciona a última ID da iteração atual
             }
         )
     )
