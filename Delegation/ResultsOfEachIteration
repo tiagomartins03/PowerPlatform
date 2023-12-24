@@ -13,7 +13,8 @@ ClearCollect(
     {
         Iteration: 1,
         Records: CountRows(colAutomatic),
-        UltimoID: Last(colAutomatic).ID // Adiciona a última ID da primeira iteração
+        UltimoID: Last(colAutomatic).ID, // Adiciona a última ID da primeira iteração,
+        Status:"Filled"
     }
 );
 ForAll(
@@ -47,7 +48,8 @@ ForAll(
             {
                 Iteration: Value(Last(colIterations).Iteration) + 1,
                 Records: CountRows(Filter(colAutomatic, ID > UltimoID)),
-                UltimoID: Last(colAutomatic).ID // Adiciona a última ID da iteração atual
+                UltimoID: Last(colAutomatic).ID,
+                Status:"Filled" // Adiciona a última ID da iteração atual
             }
         )
     )
