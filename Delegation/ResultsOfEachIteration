@@ -1,5 +1,10 @@
+// Set the variable AmountData to the total number of rows in NETFLIXDATA
 Set(AmountData, CountRows(NETFLIXDATA));
+
+// Calculate the maximum number of iterations needed, with each iteration processing up to 2000 rows
 Set(MaxIteration, RoundUp(AmountData / 2000, 0));
+
+// Clear and collect data in colAutomatic, sorted in ascending order based on ID
 ClearCollect(
     colAutomatic,
     Sort(
@@ -8,15 +13,19 @@ ClearCollect(
         SortOrder.Ascending
     )
 );
+
+// Initialize colIterations with information about the first iteration
 ClearCollect(
     colIterations,
     {
         Iteration: 1,
         Records: CountRows(colAutomatic),
-        UltimoID: Last(colAutomatic).ID, // Adiciona a última ID da primeira iteração,
+        UltimoID: Last(colAutomatic).ID, // Add the last ID from the first iteration
         Status:"Filled"
     }
 );
+
+// Iterate through the data in batches of 2000 rows
 ForAll(
     Sequence(
         RoundUp(
@@ -28,10 +37,11 @@ ForAll(
                 )
             ).ID / 2000,
             0
-        ) - 1 // Subtrai 1 para evitar a iteração extra
+        ) - 1 // Subtract 1 to avoid the extra iteration
     ),
     With(
         {UltimoID: Last(colAutomatic).ID},
+        // Collect the next batch of data into colAutomatic
         Collect(
             colAutomatic,
             Filter(
@@ -43,13 +53,15 @@ ForAll(
                 ID > UltimoID
             )
         );
+
+        // Update colIterations with information about the current iteration
         Collect(
             colIterations,
             {
                 Iteration: Value(Last(colIterations).Iteration) + 1,
                 Records: CountRows(Filter(colAutomatic, ID > UltimoID)),
                 UltimoID: Last(colAutomatic).ID,
-                Status:"Filled" // Adiciona a última ID da iteração atual
+                Status:"Filled" // Add the last ID from the current iteration
             }
         )
     )
