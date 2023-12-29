@@ -1,0 +1,16 @@
+Step 1 
+    Insert a attach field in your Power Apps application 
+
+Step 2
+    Insert a button. In this component paste the first code. 
+    It is response for runs each item on attach field and save the file name and component.
+
+Step 3
+    Insert a gallery. In this component insert the first collection and on image gallery image component write 
+    ThisItem.base64 and on label insert ThisItem.Name.
+
+Step 4
+    Paste the Second Code. This element will read and get all records on gallery and transfrom each of them for base64.
+
+Step 5
+    Paste the Third Code. It is been used for crop the Mime Type of each record. It is not mandatory that you use it. 
