@@ -1,0 +1,1 @@
+solutionpackager.exe /action:Extract /zipfile:"D:\CRM\Sandbox\Default_1_0.zip" /folder:"Sandbox\Solution"

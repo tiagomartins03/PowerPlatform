@@ -1,0 +1,1 @@
+solutionpackager.exe /action:Pack /folder:"D:\CRM\Sandbox" /zipfile:CRM_Solution.zip"
